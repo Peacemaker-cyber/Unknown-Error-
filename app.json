@@ -5,7 +5,7 @@
     "whatsapp bot"
   ],
   "logo":"https://files.catbox.moe/n0dgjr.jpg",
-  "repository": "https://github.com/Peacemaker-cyber/PEACE-MD",
+  "repository": "https://github.com/Peacemaker-cyber/PEACEMD",
   "stack": "container",
   "env": { 
       "SESSION_ID": {
