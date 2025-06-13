@@ -1,16 +1,16 @@
 {
-  "name": " ᴘᴇᴀᴄᴇ ᴍᴅ ʙᴏᴛ",
+  "name": " xᴇᴏɴ xᴍᴅ ʙᴏᴛ",
   "version": "10.8.1",
-  "description": "Peace MD tech inc",
+  "description": "Black Tappy tech inc",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "pm2 start index.js --deep-monitoring --attach --name  ᴘᴇᴀᴄᴇ ᴍᴅ ʙᴏᴛ",
-    "stop": "pm2 stop  ᴘᴇᴀᴄᴇ ᴍᴅ ʙᴏᴛ",
-    "restart": "pm2 restart  ᴘᴇᴀᴄᴇ ᴍᴅ ʙᴏᴛ"
+    "start": "pm2 start index.js --deep-monitoring --attach --name  xᴇᴏɴ xᴍᴅ ʙᴏᴛ",
+    "stop": "pm2 stop  xᴇᴏɴ xᴍᴅ ʙᴏᴛ",
+    "restart": "pm2 restart  xᴇᴏɴ xᴍᴅ ʙᴏᴛ"
   },
   "keywords": ["black-tappy", "whatsapp-bot", "whatsapp md bot"],
-  "author": " ᴘᴇᴀᴄᴇ ᴍᴅ",
+  "author": " ʙʟᴀᴄᴋᴛᴀᴘᴘʏ",
   "license": "ISC",
   "dependencies": {
     "@whiskeysockets/baileys": "npm:@fizzxydev/baileys-pro@8.5.12",
