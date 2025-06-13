@@ -15,64 +15,66 @@ const menu = async (m, sock) => {
     const profilePictureUrl = 'https://files.catbox.moe/n0dgjr.jpg';
 
     const menuText = `
-╭───❍「 *😇𝐏ᴇᴀᴄᴇ 𝐌ᴅ😇* 」
-│ *🏷️Version*: 7.1.0 |
-│ *👑Developed By PEACE-MD*
-│ *🎲Ultrasonic Power and Speed⚡
-╰───────────❍
-> Explore the Bot command 🪄 for ultimate magic ✨ 
-╭─⊳⋅🤖 ꜱʏꜱᴛᴇᴍ ᴍᴇɴᴜ 🤖⋅⊲❍
-⌬ ${prefix}menu
-⌬ ${prefix}alive
-⌬ ${prefix}owner
-⌬ ${prefix}menu
-╰─⊲⋅═════════⋅⊳─❍
+🌀━━━━━━━━━━━━━━━━━━━━━━━━━━━━━🌀
+     😇 𝙋𝙀𝘼𝘾𝙀 𝙈𝘿 — 𝙑𝙀𝙍𝙎𝙄𝙊𝙉 7.1.0 😇
+🌀━━━━━━━━━━━━━━━━━━━━━━━━━━━━━🌀
+👑 *CREATED BY:* 𝙋𝙀𝘼𝘾𝙀-𝙈𝘿  
+⚡ *ULTRASONIC SPEED + POWER*
+💎 *Built for Smart & Fast Execution*
 
-╭─⊳⋅⛩️ ᴏᴡɴᴇʀ ᴍᴇɴᴜ ⛩️⋅⊲❍
-⌬ ${prefix}join
-⌬ ${prefix}leave
-⌬ ${prefix}autobio
-⌬ ${prefix}block
-⌬ ${prefix}autolikestatus
-⌬ ${prefix}unblock
-⌬ ${prefix}antidelete on
-⌬ ${prefix}anticall
-⌬ ${prefix}settings
-⌬ ${prefix}setname
-╰─═══════════⋅⊳❍
+✨ _“Unleash the magic with every command.”_ ✨
+🔮━━━━━━━━━━━━━━━━━━━━━🔮
 
-╭─⊳⋅🔍 ɢᴘᴛ ᴍᴇɴᴜ 🔍⋅⊲❍
-⌬ ${prefix}ai
-⌬ ${prefix}bug
-⌬ ${prefix}report
-⌬ ${prefix}chatbot
-⌬ ${prefix}gpt
-⌬ ${prefix}popkid
-╰─⊲⋅══════════⋅⊳❍
+📂 SYSTEM PANEL
+   ━━━━━━━━━━━━━━━━━━━
+   🔹 .menu
+   🔹 .alive
+   🔹 .owner
+   🔹 .menu
 
-╭─⊳⋅📦 ᴄᴏɴᴠᴇʀᴛᴇʀ ᴍᴇɴᴜ 📦⋅⊲❍
-⌬ ${prefix}attp
-⌬ ${prefix}gimage
-⌬ ${prefix}play
-⌬ ${prefix}video
-╰─⊲⋅════════════⋅⊳❍
+👑 OWNER PANEL
+   ━━━━━━━━━━━━━━━━━━━
+   ⚔️ .join / .leave
+   ⚔️ .block / .unblock
+   ⚔️ .autobio / .autolikestatus
+   ⚔️ .anticall / .antidelete on
+   ⚔️ .settings / .setname
 
-╭─⊳⋅🪄 ꜱᴇᴀʀᴄʜ ᴍᴇɴᴜ 🪄⋅⊲❍
-⌬ ${prefix}google
-⌬ ${prefix}mediafire
-⌬ ${prefix}facebook
-⌬ ${prefix}instagram
-⌬ ${prefix}tiktok
-⌬ ${prefix}lyrics
-⌬ ${prefix}imdb
-╰─⊲⋅═══════⋅⊳❍
+🧠 GPT / AI PANEL
+   ━━━━━━━━━━━━━━━━━━━
+   🧬 .ai
+   🧬 .bug
+   🧬 .report
+   🧬 .chatbot
+   🧬 .gpt
+   🧬 .peacemaker 
 
-╭─⊳⋅😂 ꜰᴜɴ ᴍᴇɴᴜ 😂⋅⊲❍
-⌬ ${prefix}getpp
-⌬ ${prefix}url
-⌬ ${prefix}roast
-╰─⊲⋅══════════⋅⊳❍
-📢 *Dᴇᴠ 𝐏ᴇᴀᴄᴇ 𝐌ᴅ*
+🔄 CONVERTER PANEL
+   ━━━━━━━━━━━━━━━━━━━
+   🎞️ .attp
+   🎞️ .gimage
+   🎞️ .play
+   🎞️ .video
+
+🔍 SEARCH PANEL
+   ━━━━━━━━━━━━━━━━━━━
+   🌐 .google
+   🌐 .mediafire
+   🌐 .facebook
+   🌐 .instagram
+   🌐 .tiktok
+   🌐 .lyrics
+   🌐 .imdb
+
+🎉 FUN PANEL
+   ━━━━━━━━━━━━━━━━━━━
+   😂 .getpp
+   😂 .url
+   😂 .roast
+
+🧾━━━━━━━━━━━━━━━━━━━━━━━━━🧾
+💥 *POWERED BY:* 𝘿𝙚𝙫 𝙋𝙚𝙖𝙘𝙚 𝙈𝘿 💥
+🧾━━━━━━━━━━━━━━━━━━━━━━━━━🧾
 `;
 
     await sock.sendMessage(m.from, {
