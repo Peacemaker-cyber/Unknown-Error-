@@ -20,17 +20,27 @@ const ping = async (m, Matrix) => {
     // Simulated response time between 800ms – 1800ms
     const responseTime = Math.floor(Math.random() * (1800 - 800 + 1)) + 800;
 
-    // Determine speed badge
+    // Speed status based on response time
     let speedStatus = '🟢 FAST';
     if (responseTime >= 1500) speedStatus = '🔴 SLOW';
     else if (responseTime >= 1000) speedStatus = '🟡 AVERAGE';
 
-    // Get current date and time in local format
+    // Kenyan time and date formatting
     const now = new Date();
-    const time = now.toLocaleTimeString('en-KE', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-    const date = now.toLocaleDateString('en-KE', { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' });
+    const time = now.toLocaleTimeString('en-KE', {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      timeZone: 'Africa/Nairobi'
+    });
+    const date = now.toLocaleDateString('en-KE', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      timeZone: 'Africa/Nairobi'
+    });
 
-    // Styled text layout
     const fancyHeader = `╔════════════════════╗\n║  🔰  𝐏𝐄𝐀𝐂𝐄 𝐌𝐃 𝐁𝐎𝐓  🔰  ║\n╚════════════════════╝`;
     const fancyFooter = `╔════════════════════╗\n║  ⚙️  𝐒𝐲𝐬𝐭𝐞𝐦 𝐎𝐧𝐥𝐢𝐧𝐞 ⚙️  ║\n╚════════════════════╝`;
 
