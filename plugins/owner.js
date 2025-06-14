@@ -38,8 +38,8 @@ const ownerContact = async (m, gss) => {
             body: "Tap to message the developer",
             mediaType: 1,
             thumbnailUrl: "https://telegra.ph/file/4592cbd7a6cb89dfcd9a3.jpg", // Optional image
-            mediaUrl: `https://wa.me/${ownernumber.replace(/[^0-9]/g, '')}`,
-            sourceUrl: `https://wa.me/${ownernumber.replace(/[^0-9]/g, '')}`
+            mediaUrl: `https://wa.me/${ownerNumber.replace(/[^0-9]/g, '')}`,
+            sourceUrl: `https://wa.me/${ownerNumber.replace(/[^0-9]/g, '')}`
           },
           mentionedJid: [m.sender]
         }
