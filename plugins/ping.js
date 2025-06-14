@@ -25,10 +25,16 @@ const ping = async (m, Matrix) => {
     if (responseTime >= 1500) speedStatus = '🔴 SLOW';
     else if (responseTime >= 1000) speedStatus = '🟡 AVERAGE';
 
+    // Get current date and time in local format
+    const now = new Date();
+    const time = now.toLocaleTimeString('en-KE', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    const date = now.toLocaleDateString('en-KE', { weekday: 'long', year: 'numeric', month: 'short', day: 'numeric' });
+
+    // Styled text layout
     const fancyHeader = `╔════════════════════╗\n║  🔰  𝐏𝐄𝐀𝐂𝐄 𝐌𝐃 𝐁𝐎𝐓  🔰  ║\n╚════════════════════╝`;
     const fancyFooter = `╔════════════════════╗\n║  ⚙️  𝐒𝐲𝐬𝐭𝐞𝐦 𝐎𝐧𝐥𝐢𝐧𝐞 ⚙️  ║\n╚════════════════════╝`;
 
-    const stylishText = `\n\n${textEmoji} *Ping Response:* _${responseTime} ms_ ${reactionEmoji}\n📊 *Status:* ${speedStatus}\n📡 *Bot:* Online & Responsive\n📅 *Date:* ${new Date().toLocaleDateString()}\n🕒 *Time:* ${new Date().toLocaleTimeString()}\n\n👤 @${m.sender.split('@')[0]}`;
+    const stylishText = `\n\n${textEmoji} *Ping Response:* _${responseTime} ms_ ${reactionEmoji}\n📊 *Status:* ${speedStatus}\n📡 *Bot:* Online & Responsive\n📅 *Date:* ${date}\n🕒 *Time:* ${time}\n\n👤 @${m.sender.split('@')[0]}`;
 
     const finalMessage = `\`\`\`\n${fancyHeader}\n\`\`\`${stylishText}\n\`\`\`${fancyFooter}\n\`\`\``;
 
