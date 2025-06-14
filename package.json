@@ -1,19 +1,19 @@
 {
-  "name": " ᴘᴇᴀᴄᴇ ᴍᴅ ʙᴏᴛ",
+  "name": " xᴇᴏɴ xᴍᴅ ʙᴏᴛ",
   "version": "10.8.1",
-  "description": "Peacemaker tech inc",
+  "description": "Black Tappy tech inc",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "pm2 start index.js --deep-monitoring --attach --name ᴘᴇᴀᴄᴇ ᴍᴅ ʙᴏᴛ",
-    "stop": "pm2 stop  ᴘᴇᴀᴄᴇ ᴍᴅ ʙᴏᴛ",
-    "restart": "pm2 restart  ᴘᴇᴀᴄᴇ ᴍᴅ ʙᴏᴛ"
+    "start": "pm2 start index.js --deep-monitoring --attach --name  xᴇᴏɴ xᴍᴅ ʙᴏᴛ",
+    "stop": "pm2 stop  xᴇᴏɴ xᴍᴅ ʙᴏᴛ",
+    "restart": "pm2 restart  xᴇᴏɴ xᴍᴅ ʙᴏᴛ"
   },
-  "keywords": ["Peacemaker-cyber", "whatsapp-bot", "whatsapp md bot"],
-  "author": " 𝗣𝗘𝗔𝗖𝗘𝗠𝗔𝗞𝗘𝗥",
+  "keywords": ["black-tappy", "whatsapp-bot", "whatsapp md bot"],
+  "author": " ʙʟᴀᴄᴋᴛᴀᴘᴘʏ",
   "license": "ISC",
   "dependencies": {
-    "@whiskeysockets/baileys": "npm:@fizzxydev/baileys-pro@8.5.17",
+    "@whiskeysockets/baileys": "npm:@fizzxydev/baileys-pro@8.5.12",
     "@ffmpeg-installer/ffmpeg": "^1.1.0",
     "@google/generative-ai": "^0.9.0",
     "@hapi/boom": "^10.0.1",
