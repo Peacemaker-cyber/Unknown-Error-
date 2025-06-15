@@ -22,22 +22,24 @@ const ownerContact = async (m, gss) => {
       const fullText = `\`\`\`\n${fancyHeader}\n\`\`\`${info}\n\`\`\`${fancyFooter}\n\`\`\``;
 
       await gss.sendMessage(m.from, {
-        text: fullText,
-        footer: '🔰 𝐏𝐄𝐀𝐂𝐄 𝐌𝐃 𝐁𝐎𝐓 🔰',
-        buttons: [
-          {
-            buttonId: `.menu`,
-            buttonText: { displayText: '💬 Message Owner' },
-            type: 1,
-          }
-        ],
-        headerType: 1,
+        buttonsMessage: {
+          contentText: fullText,
+          footerText: '🔰 𝐏𝐄𝐀𝐂𝐄 𝐌𝐃 𝐁𝐎𝐓 🔰',
+          buttons: [
+            {
+              buttonId: `.menu`,
+              buttonText: { displayText: '💬 Message Owner' },
+              type: 1,
+            }
+          ],
+          headerType: 1
+        },
         contextInfo: {
           externalAdReply: {
             title: "Chat with Owner",
             body: "Tap to message the developer",
             mediaType: 1,
-            thumbnailUrl: "https://telegra.ph/file/4592cbd7a6cb89dfcd9a3.jpg", // Optional image
+            thumbnailUrl: "https://telegra.ph/file/4592cbd7a6cb89dfcd9a3.jpg",
             mediaUrl: `https://wa.me/${ownerNumber.replace(/[^0-9]/g, '')}`,
             sourceUrl: `https://wa.me/${ownerNumber.replace(/[^0-9]/g, '')}`
           },
