@@ -14,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "@whiskeysockets/baileys": "https://github.com/Dark-Xploit/Baileys/archive/refs/tags/v2.0.5.tar.gz",
+    "@rodrigogs/baileys-store" : "^1.0.1",
     "@ffmpeg-installer/ffmpeg": "^1.1.0",
     "@google/generative-ai": "^0.9.0",
     "@hapi/boom": "^10.0.1",
