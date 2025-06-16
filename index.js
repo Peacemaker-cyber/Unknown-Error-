@@ -1,3 +1,5 @@
+//base by Black-Tappy
+//Note🚨:Do not 🚫 modify the base
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -166,7 +168,7 @@ async function start() {
 
                     Matrix.sendMessage(Matrix.user.id, {
                         image: { url: "https://files.catbox.moe/s2xj7v.jpg" },
-                        caption: `*Hello there User! 👋🏻* \n\n> Simple, Straightforward, But Loaded With Features 🎊. Meet PEACE-MD WhatsApp Bot.\n\n*Thanks for using PEACE-MD 🚩* \n\n> Join WhatsApp Channel: ⤵️  \nhttps://whatsapp.com/channel/0029VbA9YD323n3ko5xL7J1e\n\n- *YOUR PREFIX:* = ${prefix}\n\nDon't forget to give a star to the repo ⬇️  \nhttps://github.com/Black-Tappy/XEON-XMD\n\n> © 𝐏ᴏᴡᴇʀᴇᴅ 𝐁ʏ 𝐏ᴇᴀᴄᴇᴍᴀᴋᴇ𝐑`
+                        caption: `*Hello there User! 👋🏻* \n\n> Simple, Straightforward, But Loaded With Features 🎊. Meet PEACE-MD WhatsApp Bot.\n\n*Thanks for using PEACE-MD 🚩* \n\n> Join WhatsApp Channel: ⤵️  \nhttps://whatsapp.com/channel/0029VbA9YD323n3ko5xL7J1e\n\n- *YOUR PREFIX:* = ${prefix}\n\nDon't forget to give a star to the repo ⬇️  \nhttps://github.com/Peacemaker-cyber/PEACE-MD\n\n> © 𝐏ᴏᴡᴇʀᴇᴅ 𝐁ʏ 𝐏ᴇᴀᴄᴇᴍᴀᴋᴇ𝐑`
                     });
                     
                     // --- Start Auto Bio Feature ---
