@@ -38,19 +38,6 @@ const config = {
   SUDO_NUMBER: process.env.SUDO_NUMBER || "254752818245",
   GEMINI_KEY: process.env.GEMINI_KEY || "AIzaSyCUPaxfIdZawsKZKqCqJcC-GWiQPCXKTDc",
   WELCOME: process.env.WELCOME !== undefined ? process.env.WELCOME === 'true' : false,
-  // Add these lines to your config.cjs file
-
-  // --- AUTO BIO SETTINGS ---
-  global.AUTO_BIO = process.env.AUTO_BIO || 'true'; // Set to 'false' to disable
-  // Add the bios you want to use here
-  global.BIO_TEXTS = [
-    'Powered by PEACE-MD 🚀',
-    'Online 24/7 | 🟢',
-    'Just a bot, doing bot things ✨',
-    'Creating magic with code... 🪄',
-    `Owner: ${global.OWNER_NAME}`
-],
-
   // New additions for status command
   STATUS: process.env.STATUS !== undefined ? process.env.STATUS === 'true' : false,  // enable/disable status feature
   DEPLOY_DATE: process.env.DEPLOY_DATE || "2025-05-25",                         // deployment date (YYYY-MM-DD)
