@@ -14,8 +14,8 @@
 
 <!-- Banner Image -->
 <p align="center">
-  <a href="https://files.catbox.moe/n0dgjr.jpg">
-    <img src="https://files.catbox.moe/n0dgjr.jpg" width="100%" height="auto">
+  <a href="https://files.catbox.moe/y3ifqx.jpg">
+    <img src="https://files.catbox.moe/y3ifqx.jpg" width="100%" height="auto">
   </a>
 </p>
 
