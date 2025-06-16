@@ -43,10 +43,41 @@ const __dirname = path.dirname(__filename);
 
 const sessionDir = path.join(__dirname, 'session');
 const credsPath = path.join(sessionDir, 'creds.json');
+const statsFilePath = path.join(__dirname, 'deployment_stats.json'); // Path for deployment stats
 
 if (!fs.existsSync(sessionDir)) {
     fs.mkdirSync(sessionDir, { recursive: true });
 }
+
+async function updateDeploymentStats() {
+    let stats = { total: 0, today_deploys: { date: "", count: 0 } };
+    try {
+        if (fs.existsSync(statsFilePath)) {
+            stats = JSON.parse(fs.readFileSync(statsFilePath));
+        }
+    } catch (error) {
+        console.error("Error reading deployment stats:", error);
+    }
+
+    const today = moment().tz(config.TIME_ZONE || "Africa/Nairobi").format("YYYY-MM-DD");
+
+    if (stats.today_deploys.date === today) {
+        stats.today_deploys.count += 1;
+    } else {
+        stats.today_deploys.date = today;
+        stats.today_deploys.count = 1;
+    }
+    stats.total += 1;
+
+    try {
+        fs.writeFileSync(statsFilePath, JSON.stringify(stats, null, 2));
+    } catch (error) {
+        console.error("Error writing deployment stats:", error);
+    }
+
+    return stats;
+}
+
 
 async function downloadSessionData() {
     console.log("Debugging SESSION_ID:", config.SESSION_ID);
@@ -89,56 +120,81 @@ async function start() {
     try {
         const { state, saveCreds } = await useMultiFileAuthState(sessionDir);
         const { version, isLatest } = await fetchLatestBaileysVersion();
-        console.log(`🤖 Peaace md using WA v${version.join('.')}, isLatest: ${isLatest}`);
+        console.log(`🤖 XEON-XMD using WA v${version.join('.')}, isLatest: ${isLatest}`);
         
         const Matrix = makeWASocket({
             version,
             logger: pino({ level: 'silent' }),
             printQRInTerminal: useQR,
-            browser: ["PEACE MD", "safari", "3.3"],
+            browser: ["XEON-XMD", "safari", "3.3"],
             auth: state,
             getMessage: async (key) => {
                 if (store) {
                     const msg = await store.loadMessage(key.remoteJid, key.id);
                     return msg.message || undefined;
                 }
-                return { conversation: "peace md whatsapp user bot" };
+                return { conversation: " cloid ai whatsapp user bot" };
             }
         });
 
-Matrix.ev.on('connection.update', (update) => {
-    const { connection, lastDisconnect } = update;
-    if (connection === 'close') {
-        if (lastDisconnect.error?.output?.statusCode !== DisconnectReason.loggedOut) {
-            start();
-        }
-    } else if (connection === 'open') {
-        if (initialConnection) {
-            console.log(chalk.green("Connected Successfully Peace MD 🤍"));
-            Matrix.sendMessage(Matrix.user.id, { 
-                image: { url: "https://files.catbox.moe/n0dgjr.jpg" }, 
-                caption: `*Hello there User! 👋🏻* 
+        Matrix.ev.on('connection.update', async (update) => {
+            const { connection, lastDisconnect } = update;
+            if (connection === 'close') {
+                if (lastDisconnect.error?.output?.statusCode !== DisconnectReason.loggedOut) {
+                    console.log(chalk.yellow("Connection closed. Reconnecting..."));
+                    start();
+                } else {
+                    console.log(chalk.red("Connection logged out. Please re-authenticate."));
+                    fs.rmSync(sessionDir, { recursive: true, force: true });
+                    process.exit(1);
+                }
+            } else if (connection === 'open') {
+                if (initialConnection) {
+                    console.log(chalk.green("Connected Successfully XEON XMD 🤍"));
 
-> 𝐏ᴇᴀᴄᴇ 𝐌ᴅ is Simple, Straightforward WhatsApp Bot Loaded With Coolest😎 Features 🎊 
+                    const stats = await updateDeploymentStats();
+                    const ownerJid = `${config.OWNER_NUMBER}@s.whatsapp.net`;
+                    const deployMessage = `
+*🎉 XEON-XMD Deployment Successful! 🎉*
 
-*Thanks for using PEACE-MD 🤖* 
+*🤖 Bot Name:* ${config.BOT_NAME}
+*📱 Bot Number:* ${Matrix.user.id.split(':')[0]}
+
+*📊 Deployment Stats:*
+  - *Today:* ${stats.today_deploys.count}
+  - *Total:* ${stats.total}
+
+*📆 Date:* ${moment().tz(config.TIME_ZONE || "Africa/Nairobi").format('dddd, MMMM Do YYYY')}
+*⏳ Time:* ${moment().tz(config.TIME_ZONE || "Africa/Nairobi").format('h:mm:ss a')}
+
+*The bot is now online and fully operational.*
+`;
+                    await Matrix.sendMessage(ownerJid, { text: deployMessage });
+
+                    Matrix.sendMessage(Matrix.user.id, {
+                        image: { url: "https://files.catbox.moe/78hoyu.jpg" },
+                        caption: `*Hello there User! 👋🏻* 
+
+> Simple, Straightforward, But Loaded With Features 🎊. Meet XEON XMD WhatsApp Bot.
+
+*Thanks for using XEON XMD 🚩* 
 
 > Join WhatsApp Channel: ⤵️  
-https://whatsapp.com/channel/0029VbA9YD323n3ko5xL7J1e
+https://whatsapp.com/channel/0029VasHgfG4tRrwjAUyTs10
 
 - *YOUR PREFIX:* = ${prefix}
 
 Don't forget to give a star to the repo ⬇️  
-https://github.com/Peacemaker-cyber/PEACE-MD
+https://github.com/Black-Tappy/XEON-XMD
 
-> © 𝐏ᴏᴡᴇʀᴇᴅ 𝐁ʏ 𝐏ᴇᴀᴄᴇ-𝐌ᴅ`
-            });
-            initialConnection = false;
-        } else {
-            console.log(chalk.blue("♻️ Connection reestablished after restart."));
-        }
-    }
-});
+> © REGARDS Ⴊl𐌀Ꮳk𐌕𐌀ႲႲჄ`
+                    });
+                    initialConnection = false;
+                } else {
+                    console.log(chalk.blue("♻️ Connection reestablished after restart."));
+                }
+            }
+        });
         
         Matrix.ev.on('creds.update', saveCreds);
 
@@ -155,9 +211,7 @@ https://github.com/Peacemaker-cyber/PEACE-MD
         Matrix.ev.on('messages.upsert', async (chatUpdate) => {
             try {
                 const mek = chatUpdate.messages[0];
-                console.log(mek);
                 if (!mek.key.fromMe && config.AUTO_REACT) {
-                    console.log(mek);
                     if (mek.message) {
                         const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
                         await doReact(randomEmoji, mek, Matrix);
@@ -168,41 +222,36 @@ https://github.com/Peacemaker-cyber/PEACE-MD
             }
         });
         
+        // --- NEW: Dedicated emoji list for status reactions ---
+        const statusReactEmojis = [
+            '❤️', '😂', '👍', '🎉', '🔥', '🤔', '🙏', '💯', '😮', '😊',
+            '😢', '🚀', '✨', '💀', '🤖', '✅', '😎', '🙌', '👀', '🤯'
+        ];
+
+        // --- MODIFIED: Auto status view, reply, and react ---
         Matrix.ev.on('messages.upsert', async (chatUpdate) => {
-    try {
-        const mek = chatUpdate.messages[0];
-        const fromJid = mek.key.participant || mek.key.remoteJid;
-        if (!mek || !mek.message) return;
-        if (mek.key.fromMe) return;
-        if (mek.message?.protocolMessage || mek.message?.ephemeralMessage || mek.message?.reactionMessage) return; 
-        if (mek.key && mek.key.remoteJid === 'status@broadcast' && config.AUTO_STATUS_SEEN) {
-            await Matrix.readMessages([mek.key]);     
-              //=============readstatus======= 
-        if (config.READ_MESSAGE === 'true') {
-    await conn.readMessages([mek.key]);  // Mark message as read
-    console.log(`Marked message from ${mek.key.remoteJid} as read.`);
-  }
-        if (mek.key && mek.key.remoteJid === 'status@broadcast' && config.AUTO_STATUS_REACT === "true"){
-               const jawadlike = await conn.decodeJid(conn.user.id);
-               const emojis = ['❤️', '💸', '😇', '🍂', '💥', '💯', '🔥', '💫', '💎', '💗', '🤍', '🖤', '👀', '🙌', '🙆', '🚩', '🥰', '💐', '😎', '🤎', '✅', '🫀', '🧡', '😁', '😄', '🌸', '🕊️', '🌷', '⛅', '🌟', '🗿', '🇵🇰', '💜', '💙', '🌝', '🖤', '🎎', '🎏', '🎐', '⚽', '🧣', '🌿', '⛈️', '🌦️', '🌚', '🌝', '🙈', '🙉', '🦖', '🐤', '🎗️', '🥇', '👾', '🔫', '🐝', '🦋', '🍓', '🍫', '🍭', '🧁', '🧃', '🍿', '🍻', '🎀', '🧸', '👑', '〽️', '😳', '💀', '☠️', '👻', '🔥', '♥️', '👀', '🐼'];
-               const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
-    await conn.sendMessage(mek.key.remoteJid, {
-      react: {
-        text: randomEmoji,
-        key: mek.key,
-      } 
-    }, { statusJidList: [mek.key.participant, jawadlike] });
-  }        
-          //=============readstatus=======                         
-            if (config.AUTO_STATUS_REPLY) {
-                const customMessage = config.STATUS_READ_MSG || '✅ Auto Status Seen Bot By XEON-XMD';
-                await Matrix.sendMessage(fromJid, { text: customMessage }, { quoted: mek });
+            try {
+                const mek = chatUpdate.messages[0];
+                if (!mek || !mek.message || mek.key.fromMe || mek.message?.protocolMessage || mek.message?.ephemeralMessage) return;
+
+                if (mek.key && mek.key.remoteJid === 'status@broadcast' && config.AUTO_STATUS_SEEN) {
+                    await Matrix.readMessages([mek.key]);
+                    
+                    if (config.AUTO_STATUS_REACT === 'true') {
+                        // --- MODIFIED: Use the new dedicated list for status reactions ---
+                        const randomEmoji = statusReactEmojis[Math.floor(Math.random() * statusReactEmojis.length)];
+                        await doReact(randomEmoji, mek, Matrix);
+                    }
+                    
+                    if (config.AUTO_STATUS_REPLY) {
+                        const customMessage = config.STATUS_READ_MSG || '✅ Auto Status Seen Bot By XEON-XMD';
+                        await Matrix.sendMessage(mek.key.remoteJid, { text: customMessage }, { quoted: mek });
+                    }
+                }
+            } catch (err) {
+                console.error('Error handling messages.upsert for status:', err);
             }
-        }
-    } catch (err) {
-        console.error('Error handling messages.upsert event:', err);
-    }
-});
+        });
 
     } catch (error) {
         console.error('Critical Error:', error);
@@ -230,10 +279,14 @@ async function init() {
 init();
 
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    res.send('Hello, XEON-XMD is running!');
+});
+
+app.get('/ping', (req, res) => {
+    res.status(200).send({ status: 'ok', message: 'Bot is alive!' });
 });
 
 app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+    console.log(lime(`Server is running on port ${PORT}`));
+    console.log(orange(`To keep the bot alive, ping this URL: http://localhost:${PORT}/ping`));
 });
-
