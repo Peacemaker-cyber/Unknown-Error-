@@ -1,21 +1,21 @@
-./*                                   
+/*                                   
 ────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-made by Peacemaker 
-contact owner +254752818245 
+made by Black-Tappy
+contact owner +254759000340
 
 CURRENTLY RUNNING ON BETA VERSION!!
 *
-   * @project_name : ᴘᴇᴀᴄᴇ ᴍᴅ
-   * @author : peacemaker 
-   * @youtube : https://www.youtube.com/Peacemaker
+   * @project_name : Shadow-Xtech-V1 
+   * @author : Ⴊl𐌀Ꮳk𐌕𐌀ႲႲჄ
+   * @youtube : https://www.youtube.com/@Black-Tappy
    * @infoription : Shadow-Xtech-V1 ,A Multi-functional whatsapp user bot.
    * @version 10 
 *
    * Licensed under the  GPL-3.0 License;
 * 
-   * ┌┤Created By Peacemaker tech info.
-   * © 2025 ᴘᴇᴀᴄᴇ ᴍᴅ ✭ ⛥.
+   * ┌┤Created By Black-Tappy tech info.
+   * © 2025 Shadow-Xtech-V1 ✭ ⛥.
    * plugin date : 16/5/2025
 * 
    * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
@@ -66,7 +66,7 @@ class DemonAntiDelete {
 
   formatTime(timestamp) {
     const options = {
-      timeZone: 'Africa/Nairobi',
+      timeZone: 'Asia/Karachi',
       year: 'numeric',
       month: 'short',
       day: 'numeric',
