@@ -60,7 +60,7 @@ const text = m.body.slice(prefix.length + cmd.length).trim();
 
       await gss.sendImageAsSticker(m.from, buffer, m, {
         packname: "",
-        author: "> Ⴊl𐌀Ꮳk𐌕𐌀ႲႲჄ"
+        author: "> ~𝓟𝓮𝓪𝓬𝓮𝓶𝓪𝓴𝓮𝓻~𖡡"
       });
     } catch (error) {
       console.error('Error during HTTP request:', error);
