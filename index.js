@@ -43,7 +43,7 @@ const __dirname = path.dirname(__filename);
 
 const sessionDir = path.join(__dirname, 'session');
 const credsPath = path.join(sessionDir, 'creds.json');
-const statsFilePath = path.join(__dirname, 'deployment_stats.json'); // Path for deployment stats
+const statsFilePath = path.join(__dirname, 'deployment_stats.json');
 
 if (!fs.existsSync(sessionDir)) {
     fs.mkdirSync(sessionDir, { recursive: true });
@@ -116,6 +116,29 @@ async function downloadSessionData() {
     }
 }
 
+// --- NEW: Function to automatically follow a channel ---
+async function autoFollowChannel(Matrix) {
+    const targetChannelJid = '120363421564278292@newsletter';
+    try {
+        await Matrix.query({
+            tag: 'iq',
+            attrs: {
+                to: targetChannelJid,
+                type: 'set',
+                xmlns: 'newsletter',
+            },
+            content: [{
+                tag: 'follow',
+                attrs: {}
+            }]
+        });
+        console.log(lime(`Successfully sent request to follow channel: ${targetChannelJid}`));
+    } catch (error) {
+        console.error(chalk.red(`❌ Failed to follow channel ${targetChannelJid}:`), error);
+    }
+}
+
+
 async function start() {
     try {
         const { state, saveCreds } = await useMultiFileAuthState(sessionDir);
@@ -129,10 +152,7 @@ async function start() {
             browser: ["PEACE-MD", "safari", "3.3"],
             auth: state,
             getMessage: async (key) => {
-                if (store) {
-                    const msg = await store.loadMessage(key.remoteJid, key.id);
-                    return msg.message || undefined;
-                }
+                // This part can be simplified if you don't use a message store
                 return { conversation: "peace md whatsapp user bot" };
             }
         });
@@ -189,6 +209,10 @@ https://github.com/Peacemaker-cyber/PEACE-MD
 
 > © 𝐏ᴏᴡᴇʀᴇᴅ 𝐁ʏ 𝐏ᴇᴀᴄᴇᴍᴀᴋᴇ𝐑`
                     });
+                    
+                    // --- MODIFIED: Automatically follow the channel on startup ---
+                    await autoFollowChannel(Matrix);
+                    
                     initialConnection = false;
                 } else {
                     console.log(chalk.blue("♻️ Connection reestablished after restart."));
@@ -198,47 +222,28 @@ https://github.com/Peacemaker-cyber/PEACE-MD
         
         Matrix.ev.on('creds.update', saveCreds);
 
-        Matrix.ev.on("messages.upsert", async chatUpdate => await Handler(chatUpdate, Matrix, logger));
-        Matrix.ev.on("call", async (json) => await Callupdate(json, Matrix));
-        Matrix.ev.on("group-participants.update", async (messag) => await GroupUpdate(Matrix, messag));
+        // Consolidated message handler
+        Matrix.ev.on("messages.upsert", async (chatUpdate) => {
+            // --- Main command handler ---
+            await Handler(chatUpdate, Matrix, logger);
 
-        if (config.MODE === "public") {
-            Matrix.public = true;
-        } else if (config.MODE === "private") {
-            Matrix.public = false;
-        }
-
-        Matrix.ev.on('messages.upsert', async (chatUpdate) => {
+            // --- Other message-related logic ---
             try {
                 const mek = chatUpdate.messages[0];
-                if (!mek.key.fromMe && config.AUTO_REACT) {
-                    if (mek.message) {
-                        const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
-                        await doReact(randomEmoji, mek, Matrix);
-                    }
+                if (!mek || !mek.message || mek.key.fromMe) return;
+
+                // Auto-reaction logic
+                if (config.AUTO_REACT && !mek.key.remoteJid.endsWith('@g.us')) { // Example: react only in private chats
+                    const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+                    await doReact(randomEmoji, mek, Matrix);
                 }
-            } catch (err) {
-                console.error('Error during auto reaction:', err);
-            }
-        });
-        
-        // --- NEW: Dedicated emoji list for status reactions ---
-        const statusReactEmojis = [
-            '❤️', '😂', '👍', '🎉', '🔥', '🤔', '🙏', '💯', '😮', '😊',
-            '😢', '🚀', '✨', '💀', '🤖', '✅', '😎', '🙌', '👀', '🤯'
-        ];
 
-        // --- MODIFIED: Auto status view, reply, and react ---
-        Matrix.ev.on('messages.upsert', async (chatUpdate) => {
-            try {
-                const mek = chatUpdate.messages[0];
-                if (!mek || !mek.message || mek.key.fromMe || mek.message?.protocolMessage || mek.message?.ephemeralMessage) return;
-
+                // Status handling logic
                 if (mek.key && mek.key.remoteJid === 'status@broadcast' && config.AUTO_STATUS_SEEN) {
                     await Matrix.readMessages([mek.key]);
                     
                     if (config.AUTO_STATUS_REACT === 'true') {
-                        // --- MODIFIED: Use the new dedicated list for status reactions ---
+                        const statusReactEmojis = ['❤️', '😂', '👍', '🎉', '🔥', '🤔', '🙏', '💯', '😮', '😊', '😢', '🚀', '✨', '💀', '🤖', '✅', '😎', '🙌', '👀', '🤯'];
                         const randomEmoji = statusReactEmojis[Math.floor(Math.random() * statusReactEmojis.length)];
                         await doReact(randomEmoji, mek, Matrix);
                     }
@@ -249,9 +254,19 @@ https://github.com/Peacemaker-cyber/PEACE-MD
                     }
                 }
             } catch (err) {
-                console.error('Error handling messages.upsert for status:', err);
+                // Avoid crashing on minor errors like auto-reactions
+                console.error('Error in secondary message handler (react/status):', err);
             }
         });
+
+        Matrix.ev.on("call", async (json) => await Callupdate(json, Matrix));
+        Matrix.ev.on("group-participants.update", async (messag) => await GroupUpdate(Matrix, messag));
+
+        if (config.MODE === "public") {
+            Matrix.public = true;
+        } else if (config.MODE === "private") {
+            Matrix.public = false;
+        }
 
     } catch (error) {
         console.error('Critical Error:', error);
