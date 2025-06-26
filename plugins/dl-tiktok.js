@@ -13,9 +13,9 @@ const tiktok = async (m, Matrix) => {
   }
 
   try {
-    await Matrix.sendMessage(m.from, { react: { text: "⏳", key: m.key } });
+    await Matrix.sendMessage(m.from, { react: { text: "🎙️", key: m.key } });
 
-    const { data } = await axios.get(`https://delirius-apiofc.vercel.app/download/tiktok?url=${query}`);
+    const { data } = await axios.get(`https://apis-starlights-team.koyeb.app/starlight/tiktoksearch?url=${query}`);
 
     if (!data.success || !data.result || !data.result.video) {
       return Matrix.sendMessage(m.from, { text: "⚠️ *Failed to fetch TikTok video. Please try again.*" }, { quoted: m });
