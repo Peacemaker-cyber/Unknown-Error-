@@ -1,20 +1,19 @@
 {
-  "name": " xᴇᴏɴ xᴍᴅ ʙᴏᴛ",
+  "name": " ᴘᴇᴀᴄᴇ ᴍᴅ ʙᴏᴛ",
   "version": "10.8.1",
-  "description": "Black Tappy tech inc",
+  "description": "Peace MD tech inc",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "pm2 start index.js --deep-monitoring --attach --name  xᴇᴏɴ xᴍᴅ ʙᴏᴛ",
-    "stop": "pm2 stop  xᴇᴏɴ xᴍᴅ ʙᴏᴛ",
-    "restart": "pm2 restart  xᴇᴏɴ xᴍᴅ ʙᴏᴛ"
+    "start": "pm2 start index.js --deep-monitoring --attach --name  ᴘᴇᴀᴄᴇ ᴍᴅ ʙᴏᴛ",
+    "stop": "pm2 stop  ᴘᴇᴀᴄᴇ ᴍᴅ ʙᴏᴛ",
+    "restart": "pm2 restart  ᴘᴇᴀᴄᴇ ᴍᴅ ʙᴏᴛ"
   },
   "keywords": ["black-tappy", "whatsapp-bot", "whatsapp md bot"],
-  "author": " ʙʟᴀᴄᴋᴛᴀᴘᴘʏ",
+  "author": " ᴘᴇᴀᴄᴇ ᴍᴅ",
   "license": "ISC",
   "dependencies": {
-    "@whiskeysockets/baileys": "https://github.com/Dark-Xploit/Baileys/archive/refs/tags/v2.0.5.tar.gz",
-    "@rodrigogs/baileys-store" : "^1.0.1",
+    "@whiskeysockets/baileys": "npm:baileys-pro@0.0.5",
     "@ffmpeg-installer/ffmpeg": "^1.1.0",
     "@google/generative-ai": "^0.9.0",
     "@hapi/boom": "^10.0.1",
