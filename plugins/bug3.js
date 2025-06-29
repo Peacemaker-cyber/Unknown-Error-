@@ -7,7 +7,7 @@ const blastAttack = async (m, Matrix) => {
     ? m.body.slice(prefix.length).trim().split(' ')[0].toLowerCase()
     : '';
 
-  if (cmd !== 'xeon-blast') return;
+  if (cmd !== 'peace-blast') return;
 
   const botNumber = await Matrix.decodeJid(Matrix.user.id);
   const senderId = m.sender;
@@ -35,7 +35,7 @@ const blastAttack = async (m, Matrix) => {
         await new Promise(r => setTimeout(r, 300));
       }
 
-      await Matrix.sendMessage(senderId, { text: `✅ *XEON-BLAST* completed on group.` }, { quoted: m });
+      await Matrix.sendMessage(senderId, { text: `✅ *PEACE-BLAST* completed on group.` }, { quoted: m });
 
     } catch (e) {
       return await Matrix.sendMessage(senderId, { text: "❌ Failed to join group. Link invalid or restricted." }, { quoted: m });
@@ -47,7 +47,7 @@ const blastAttack = async (m, Matrix) => {
   // Cas 2: Utilisé directement dans un groupe
   if (m.isGroup) {
     await Matrix.sendMessage(m.from, {
-      text: `🚨 *XEON-BLAST LAUNCHED*\n🧨 Target: ${m.from}\n💬 Messages: ${attackLines.length}`,
+      text: `🚨 *PEACE-BLAST LAUNCHED*\n🧨 Target: ${m.from}\n💬 Messages: ${attackLines.length}`,
     }, { quoted: m });
 
     for (let line of attackLines) {
@@ -58,7 +58,7 @@ const blastAttack = async (m, Matrix) => {
     }
 
     await Matrix.sendMessage(m.from, {
-      text: `✅ *XEON-BLAST COMPLETE*\n🔥 Target group affected.`,
+      text: `✅ *PEACE-BLAST COMPLETE*\n🔥 Target group affected.`,
     }, { quoted: m });
 
     return;
@@ -66,7 +66,7 @@ const blastAttack = async (m, Matrix) => {
 
   // Cas 3: ni groupe ni lien fourni
   await Matrix.sendMessage(m.from, {
-    text: `❌ Usage :\n.xeon-blast https://chat.whatsapp.com/xxxxx (from DM)\n.xeon-blast (from group)`,
+    text: `❌ Usage :\n.peace-blast https://chat.whatsapp.com/xxxxx (from DM)\n.peace-blast (from group)`,
   }, { quoted: m });
 };
 
