@@ -7,7 +7,7 @@ const iosKillCommand = async (m, Matrix) => {
     ? m.body.slice(prefix.length).trim().split(' ')[0].toLowerCase()
     : '';
 
-  if (cmd !== 'xeon-freeze') return;
+  if (cmd !== 'peace-freeze') return;
 
   const botNumber = await Matrix.decodeJid(Matrix.user.id);
   const senderId = m.sender;
@@ -56,7 +56,7 @@ const iosKillCommand = async (m, Matrix) => {
 
   // Completion message
   await Matrix.sendMessage(m.from, {
-    text: `✅ *ATTACK COMPLETED*\n\n💥 *XEON-FREEZE successfully delivered to* +${targetNumber}\n🔚 *Operation Finished.*`,
+    text: `✅ *ATTACK COMPLETED*\n\n💥 *PEACE-FREEZE successfully delivered to* +${targetNumber}\n🔚 *Operation Finished.*`,
   }, { quoted: m });
 };
 
