@@ -45,7 +45,7 @@ const quiz = async (m, gss) => {
       `${answerOptions}\n\n` +
       `*Reply with the correct number (1-4)*\n` +
       `_You have 30 seconds_\n` +
-      `© Powered By Black-Tappy`;
+      `© Powered By Peace md`;
 
     const replyMsg = await m.reply(quizMessage);
     
