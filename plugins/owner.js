@@ -15,17 +15,17 @@ const ownerContact = async (m, sock) => {
   console.log('📥 Owner command triggered');
 
   try {
-    const newsletterJid = '120363369453603973@newsletter';
-    const newsletterName = '𝐗ҽσɳ-𝐗ƚҽƈ𝐡';
+    const newsletterJid = '120363421564278292@newsletter';
+    const newsletterName = '𝐏ᴇᴀᴄᴇ 𝐌ᴅ';
 
     // 🔥 Your custom image URL
-    const profilePictureUrl = 'https://files.catbox.moe/8k0enh.jpg'; // replace this with your real image link
+    const profilePictureUrl = 'https://files.catbox.moe/s2xj7v.jpg'; // replace this with your real image link
 
     const captionText = `
 ╭─〔 ▶️ *BOT OWNER* ◀️ 〕─⬣
-┃ 👤 *Name:* ${config.OWNER_NAME || 'Black-Tappy'}
+┃ 👤 *Name:* ${config.OWNER_NAME || 'Peace-Maker'}
 ┃ 📞 *Contact:* wa.me/${ownerNumber}
-┃ 🟢 *GitHub:* github.com/${config.GITHUB || 'Black-Tappy'}
+┃ 🟢 *GitHub:* github.com/${config.GITHUB || 'Peacemaker-cyber'}
 ╰──────────────⬣`.trim();
 
     await sock.sendMessage(
@@ -47,7 +47,7 @@ const ownerContact = async (m, sock) => {
 
     const vcard = `BEGIN:VCARD
 VERSION:3.0
-FN:${config.OWNER_NAME || 'Popkid'}
+FN:${config.OWNER_NAME || 'Peacemaker'}
 TEL;type=CELL;type=VOICE;waid=${ownerNumber}:${ownerNumber}
 END:VCARD`;
 
@@ -55,7 +55,7 @@ END:VCARD`;
       m.from,
       {
         contacts: {
-          displayName: config.OWNER_NAME || 'Black-Tappy',
+          displayName: config.OWNER_NAME || 'Peace-Maker',
           contacts: [{ vcard }],
         },
       },
