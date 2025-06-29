@@ -1,5 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
+import { EventEmitter } from 'events';
+EventEmitter.defaultMaxListeners = 50;
 
 import {
     makeWASocket,
