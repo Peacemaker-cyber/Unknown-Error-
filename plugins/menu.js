@@ -70,31 +70,31 @@ const menu = async (m, Matrix) => {
     const mainMenu = `
 ╭━━━〔 *${config.BOT_NAME}* 〕━━━┈⊷
 ┃★╭──────────────
-┃★│ 👑 Owner : *${config.OWNER_NAME}*
-┃★│ 🎲 User : *${m.pushName}*
-┃★│ 🤖 Baileys : *Multi Device*
-┃★│ 💻 Type : *NodeJs*
-┃★│ ⚙️ Mode : *${mode}*
-┃★│ 🌐 Platform : *${os.platform()}*
-┃★│ ♋ Prefix : [${prefix}]
-┃★│ 🏷️ Version : *4.0.0 Bᴇᴛᴀ*
+┃★│ Owner : *${config.OWNER_NAME}*
+┃★│ User : *${m.pushName}*
+┃★│ Baileys : *Multi Device*
+┃★│ Type : *NodeJs*
+┃★│ Mode : *${mode}*
+┃★│ Platform : *${os.platform()}*
+┃★│ Prefix : [${prefix}]
+┃★│ Version : *3.1.0*
 ┃★╰──────────────
 ╰━━━━━━━━━━━━━━━┈⊷
 
 > ${pushwish} *${m.pushName}*!
 
-╭━━〔 *MENU LIST* 〕━━┈⊷
+╭━━〔 *Menu List* 〕━━┈⊷
 ┃◈╭─────────────·๏
-┃◈┃• 1️⃣. 📥 Download Menu      
-┃◈┃• 2️⃣. 🔄 Converter Menu        
-┃◈┃• 3️⃣. 🤖 AI Menu  
-┃◈┃• 4️⃣. ⚙️ Tools Menu  
-┃◈┃• 5️⃣. 👥 Group Menu 
-┃◈┃• 6️⃣. 🔎 Search Menu   
-┃◈┃• 7️⃣. 🏠 Main Menu
-┃◈┃• 8️⃣. 👑 Owner Menu 
-┃◈┃• 9️⃣. 💫 Stalk Menu     
-┃◈┃• 📂 update
+┃◈┃• 1. Download Menu      
+┃◈┃• 2. Converter Menu        
+┃◈┃• 3. AI Menu  
+┃◈┃• 4. Tools Menu  
+┃◈┃• 5. Group Menu 
+┃◈┃• 6. Search Menu   
+┃◈┃• 7. Main Menu
+┃◈┃• 8. Owner Menu 
+┃◈┃• 9. Stalk Menu     
+┃◈┃• update
 ┃◈└───────────┈⊷
 ╰──────────────┈⊷
 > *Reply with the number (1-9)*`;
@@ -125,20 +125,13 @@ const menu = async (m, Matrix) => {
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
           newsletterJid: '120363421564278292@newsletter',
-          newsletterName: "𝐏ᴇᴀᴄᴇ 𝐌ᴅ",
+          newsletterName: "ᴘᴇᴀᴄᴇ ᴍᴅ",
           serverMessageId: 143
         }
       }
     }, {
       quoted: m
     });
-
-    // Send audio after sending the menu
-    await Matrix.sendMessage(m.from, {
-      audio: { url: 'https://files.catbox.moe/xwn7ix.mp3' },
-      mimetype: 'audio/mp4',
-      ptt: true
-    }, { quoted: m });
 
     // Set up listener for menu selection
     Matrix.ev.on('messages.upsert', async (event) => {
@@ -155,23 +148,23 @@ const menu = async (m, Matrix) => {
         case "1":
           menuTitle = "Download Menu";
           menuResponse = `
-╭━━〔 *📥 DOWNLOAD MENU 📥* 〕━━┈⊷
+╭━━〔 *Download Menu* 〕━━┈⊷
 ┃◈╭─────────────·๏
-┃◈┃• 🏷️ apk
-┃◈┃• 🚪 facebook
-┃◈┃• 📽️ mediafire
-┃◈┃• 🤸 pinterestdl
-┃◈┃• 🖥️ gitclone
-┃◈┃• 🖨️ gdrive
-┃◈┃• 📷 insta
-┃◈┃• 🎵 ytmp3
-┃◈┃• 🎼 ytmp4
-┃◈┃• 💽 play
-┃◈┃• 🎧 song
-┃◈┃• 📸 video
-┃◈┃• 🪩 ytmp3doc
-┃◈┃• 🎁 ytmp4doc
-┃◈┃• 🪄 tiktok
+┃◈┃• apk
+┃◈┃• facebook
+┃◈┃• mediafire
+┃◈┃• pinterestdl
+┃◈┃• gitclone
+┃◈┃• gdrive
+┃◈┃• insta
+┃◈┃• ytmp3
+┃◈┃• ytmp4
+┃◈┃• play
+┃◈┃• song
+┃◈┃• video
+┃◈┃• ytmp3doc
+┃◈┃• ytmp4doc
+┃◈┃• tiktok
 ┃◈└───────────┈⊷
 ╰──────────────┈⊷`;
           break;
@@ -179,15 +172,15 @@ const menu = async (m, Matrix) => {
         case "2":
           menuTitle = "Converter Menu";
           menuResponse = `
-╭━━〔 *🎁 CONVERTER MENU 🎁* 〕━━┈⊷
+╭━━〔 *Converter Menu* 〕━━┈⊷
 ┃◈╭─────────────·๏
-┃◈┃• 🎬 attp
-┃◈┃• 🎥 attp2
-┃◈┃• 🪙 attp3
-┃◈┃• 💎 ebinary
-┃◈┃• 🧸 dbinary
-┃◈┃• 🧬 emojimix
-┃◈┃• 🎧  mp3
+┃◈┃• attp
+┃◈┃• attp2
+┃◈┃• attp3
+┃◈┃• ebinary
+┃◈┃• dbinary
+┃◈┃• emojimix
+┃◈┃• mp3
 ┃◈└───────────┈⊷
 ╰──────────────┈⊷`;
           break;
@@ -195,15 +188,15 @@ const menu = async (m, Matrix) => {
         case "3":
           menuTitle = "AI Menu";
           menuResponse = `
-╭━━〔 *🤖 AI MENU 🤖* 〕━━┈⊷
+╭━━〔 *AI Menu* 〕━━┈⊷
 ┃◈╭─────────────·๏
-┃◈┃• 💬 ai
-┃◈┃• 🚫 bug
-┃◈┃• 🚨 report
-┃◈┃• 🧠 gpt
-┃◈┃• 🎨 dalle
-┃◈┃• 🛡️ remini
-┃◈┃• 🗨️ gemini
+┃◈┃• ai
+┃◈┃• bug
+┃◈┃• report
+┃◈┃• gpt
+┃◈┃• dalle
+┃◈┃• remini
+┃◈┃• gemini
 ┃◈└───────────┈⊷
 ╰──────────────┈⊷`;
           break;
@@ -211,13 +204,13 @@ const menu = async (m, Matrix) => {
         case "4":
           menuTitle = "Tools Menu";
           menuResponse = `
-╭━━〔 *⚙️ TOOLS MENU ⚙️* 〕━━┈⊷
+╭━━〔 *Tools Menu* 〕━━┈⊷
 ┃◈╭─────────────·๏
-┃◈┃• 🧮 calculator
-┃◈┃• ✉️ tempmail
-┃◈┃• 🗳️ checkmail
-┃◈┃• 🔊 trt
-┃◈┃• 😁 tts
+┃◈┃• calculator
+┃◈┃• tempmail
+┃◈┃• checkmail
+┃◈┃• trt
+┃◈┃• tts
 ┃◈└───────────┈⊷
 ╰──────────────┈⊷`;
           break;
@@ -225,24 +218,24 @@ const menu = async (m, Matrix) => {
         case "5":
           menuTitle = "Group Menu";
           menuResponse = `
-╭━━〔 *👥 GROUP MENU 👥* 〕━━┈⊷
+╭━━〔 *Group Menu* 〕━━┈⊷
 ┃◈╭─────────────·๏
-┃◈┃• 🔗 linkgroup
-┃◈┃• 🧊 setppgc
-┃◈┃• 📂 setname
-┃◈┃• ⚜️ setdesc
-┃◈┃• 🔱 group
-┃◈┃• 〽️vgcsetting
-┃◈┃• 🔰 welcome
-┃◈┃• ⚧️ add
-┃◈┃• 🎗️ kick
-┃◈┃• 🫟 hidetag
-┃◈┃• 🎴 tagall
-┃◈┃• 🕹️ antilink
-┃◈┃• 🎱 antitoxic
-┃◈┃• 🪀 promote
-┃◈┃• ♟️ demote
-┃◈┃• 📝 getbio
+┃◈┃• linkgroup
+┃◈┃• setppgc
+┃◈┃• setname
+┃◈┃• setdesc
+┃◈┃• group
+┃◈┃• gcsetting
+┃◈┃• welcome
+┃◈┃• add
+┃◈┃• kick
+┃◈┃• hidetag
+┃◈┃• tagall
+┃◈┃• antilink
+┃◈┃• antitoxic
+┃◈┃• promote
+┃◈┃• demote
+┃◈┃• getbio
 ┃◈└───────────┈⊷
 ╰──────────────┈⊷`;
           break;
@@ -250,19 +243,19 @@ const menu = async (m, Matrix) => {
         case "6":
           menuTitle = "Search Menu";
           menuResponse = `
-╭━━〔 *🔎 SEARCH MENU 🔎* 〕━━┈⊷
+╭━━〔 *Search Menu* 〕━━┈⊷
 ┃◈╭─────────────·๏
-┃◈┃• 🎧 play
-┃◈┃• 🎵 yts
-┃◈┃• 🗒️ imdb
-┃◈┃• 🔎 google
-┃◈┃• 🖼️ gimage
-┃◈┃• 🔗 pinterest
-┃◈┃• 📜 wallpaper
-┃◈┃• 📒 wikimedia
-┃◈┃• 🔍 ytsearch
-┃◈┃• 🔔 ringtone
-┃◈┃• 🎶 lyrics
+┃◈┃• play
+┃◈┃• yts
+┃◈┃• imdb
+┃◈┃• google
+┃◈┃• gimage
+┃◈┃• pinterest
+┃◈┃• wallpaper
+┃◈┃• wikimedia
+┃◈┃• ytsearch
+┃◈┃• ringtone
+┃◈┃• lyrics
 ┃◈└───────────┈⊷
 ╰──────────────┈⊷`;
           break;
@@ -270,13 +263,13 @@ const menu = async (m, Matrix) => {
         case "7":
           menuTitle = "Main Menu";
           menuResponse = `
-╭━━〔 *🧊 MAIN MENU 🧊* 〕━━┈⊷
+╭━━〔 *Main Menu* 〕━━┈⊷
 ┃◈╭─────────────·๏
-┃◈┃• ⚡ ping
-┃◈┃• 🟢 alive
-┃◈┃• 👑 owner
-┃◈┃• 📜 menu
-┃◈┃• 🎲 infobot
+┃◈┃• ping
+┃◈┃• alive
+┃◈┃• owner
+┃◈┃• menu
+┃◈┃• infobot
 ┃◈└───────────┈⊷
 ╰──────────────┈⊷`;
           break;
@@ -284,20 +277,20 @@ const menu = async (m, Matrix) => {
         case "8":
           menuTitle = "Owner Menu";
           menuResponse = `
-╭━━〔 *👑 OWNER MENU 👑* 〕━━┈⊷
+╭━━〔 *Owner Menu* 〕━━┈⊷
 ┃◈╭─────────────·๏
-┃◈┃• 🪀 join
-┃◈┃• 🚷 leave
-┃◈┃• 🚫 block
-┃◈┃• ⭕ unblock
-┃◈┃• ⏳ setppbot
-┃◈┃• ☎️ anticall
-┃◈┃• 🎬 setstatus
-┃◈┃• 💳 setnamebot
-┃◈┃• ✍️ autotyping
-┃◈┃• 🟢 alwaysonline
-┃◈┃• 📕 autoread
-┃◈┃• 📷 autosview
+┃◈┃• join
+┃◈┃• leave
+┃◈┃• block
+┃◈┃• unblock
+┃◈┃• setppbot
+┃◈┃• anticall
+┃◈┃• setstatus
+┃◈┃• setnamebot
+┃◈┃• autotyping
+┃◈┃• alwaysonline
+┃◈┃• autoread
+┃◈┃• autosview
 ┃◈└───────────┈⊷
 ╰──────────────┈⊷`;
           break;
@@ -305,11 +298,11 @@ const menu = async (m, Matrix) => {
         case "9":
           menuTitle = "Stalk Menu";
           menuResponse = `
-╭━━〔 *💫 STALK MENU 💫* 〕━━┈⊷
+╭━━〔 *Stalk Menu* 〕━━┈⊷
 ┃◈╭─────────────·๏
-┃◈┃• 📞 truecaller
-┃◈┃• 📸 instastalk
-┃◈┃• 🔥 githubstalk
+┃◈┃• truecaller
+┃◈┃• instastalk
+┃◈┃• githubstalk
 ┃◈└───────────┈⊷
 ╰──────────────┈⊷`;
           break;
@@ -323,10 +316,10 @@ const menu = async (m, Matrix) => {
       const fullResponse = `
 ╭━━━〔 *${config.BOT_NAME} - ${menuTitle}* 〕━━━┈⊷
 ┃★╭──────────────
-┃★│• 👑 Owner : *${config.OWNER_NAME}*
-┃★│• 🤖User : *${m.pushName}*
-┃★│• 💫Prefix : [${prefix}]
-┃★│• 🏷️Version : *4.0.0 Bᴇᴛᴀ*
+┃★│• Owner : *${config.OWNER_NAME}*
+┃★│• User : *${m.pushName}*
+┃★│• Prefix : [${prefix}]
+┃★│• Version : *3.1.0*
 ┃★╰──────────────
 ╰━━━━━━━━━━━━━━━┈⊷
 
@@ -344,7 +337,7 @@ ${menuResponse}
           isForwarded: true,
           forwardedNewsletterMessageInfo: {
             newsletterJid: '120363421564278292@newsletter',
-            newsletterName: "𝐏ᴇᴀᴄᴇ 𝐌ᴅ",
+            newsletterName: "ᴘᴇᴀᴄᴇ ᴍᴅ",
             serverMessageId: 143
           }
         }
