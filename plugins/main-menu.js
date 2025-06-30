@@ -260,5 +260,3 @@ await Matrix.sendMessage(m.from, {
 
 export default menu;
 
-Update this one without interfering with Baileys and anything concerning the codes or routes or logics
-
